@@ -5,8 +5,9 @@ import utils
 app = Flask(__name__)
 CORS(app)
 
-# Load blacklist once on startup
+# Load blacklist and whitelist once on startup
 BLACKLIST = utils.load_blacklist()
+WHITELIST = utils.load_whitelist()
 
 @app.route("/check", methods=["POST"])
 def check_url():
@@ -20,6 +21,10 @@ def check_url():
     if not domain:
         return jsonify({"malicious": True, "reason": "Invalid domain format"})
 
+    # 0. Whitelist check
+    if utils.check_whitelist(domain, WHITELIST):
+        return jsonify({"malicious": False, "reason": "Domain is whitelisted"})
+
     # 1. IP address check
     if utils.is_ip_address(domain):
         return jsonify({"malicious": True, "reason": "URL uses an IP address instead of domain"})
@@ -28,9 +33,9 @@ def check_url():
     if utils.check_blacklist(domain, BLACKLIST):
         return jsonify({"malicious": True, "reason": "Domain is blacklisted"})
 
-    # 3. Suspicious keywords in domain
+    # 3. Suspicious keywords in subdomain
     if utils.check_suspicious_keywords(domain):
-        return jsonify({"malicious": True, "reason": "Suspicious keyword in domain"})
+        return jsonify({"malicious": True, "reason": "Suspicious keyword in subdomain"})
 
     # 4. Suspicious URL path
     if utils.check_url_path(url):

@@ -2,11 +2,11 @@ document.getElementById("checkBtn").addEventListener("click", () => {
   const url = document.getElementById("urlInput").value.trim();
   const resultDiv = document.getElementById("result");
   resultDiv.textContent = "Checking...";
-  resultDiv.className = "";
+  resultDiv.className = "result"; // Reset to base class
 
   if (!url) {
     resultDiv.textContent = "Please enter a URL.";
-    resultDiv.className = "malicious";
+    resultDiv.className = "result malicious";
     return;
   }
 
@@ -21,15 +21,15 @@ document.getElementById("checkBtn").addEventListener("click", () => {
     .then((data) => {
       if (data.malicious) {
         resultDiv.textContent = `⚠️ Malicious: ${data.reason}`;
-        resultDiv.className = "malicious";
+        resultDiv.className = "result malicious";
       } else {
         resultDiv.textContent = `✅ Safe: ${data.reason}`;
-        resultDiv.className = "safe";
+        resultDiv.className = "result safe";
       }
     })
     .catch((err) => {
       resultDiv.textContent = "Error checking URL.";
-      resultDiv.className = "malicious";
+      resultDiv.className = "result malicious";
       console.error(err);
     });
 });

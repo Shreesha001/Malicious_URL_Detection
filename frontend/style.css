@@ -51,10 +51,11 @@ button:hover {
   user-select: none;
   transition: all 0.5s ease;
   border: 2px solid transparent;
-  min-height: 100px;
+  min-height: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
+  /* padding: 1.5rem; */
 }
 
 .result.safe {
