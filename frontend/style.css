@@ -1,27 +1,97 @@
-body {
-  font-family: Arial, sans-serif;
-  background: #f0f4f8;
-  text-align: center;
-  padding: 50px;
+* {
+  box-sizing: border-box;
 }
 
-.container {
-  background: white;
-  padding: 30px;
-  border-radius: 10px;
-  max-width: 400px;
-  margin: auto;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Poppins', sans-serif;
 }
 
-input, button {
-  padding: 10px;
-  margin: 10px;
-  width: 80%;
-  font-size: 16px;
+.app-container {
+  position: relative;
+  backdrop-filter: blur(10px);
+  transition: transform 0.3s ease;
 }
 
-#result {
-  margin-top: 20px;
-  font-weight: bold;
+.app-container:hover {
+  transform: scale(1.02);
+}
+
+.neon-glow {
+  box-shadow: 0 0 20px rgba(147, 51, 234, 0.5), 0 0 40px rgba(147, 51, 234, 0.3);
+}
+
+.title {
+  text-shadow: 0 0 10px rgba(147, 51, 234, 0.7);
+}
+
+.subtitle {
+  text-shadow: 0 0 5px rgba(147, 51, 234, 0.3);
+}
+
+input[type="text"] {
+  transition: all 0.3s ease;
+}
+
+input[type="text"]:focus {
+  box-shadow: 0 0 15px rgba(147, 51, 234, 0.5);
+}
+
+button {
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  box-shadow: 0 0 20px rgba(147, 51, 234, 0.6);
+}
+
+.result {
+  user-select: none;
+  transition: all 0.5s ease;
+  border: 2px solid transparent;
+  min-height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.result.safe {
+  color: #10b981;
+  background-color: rgba(16, 185, 129, 0.1);
+  border-color: #10b981;
+  box-shadow: 0 0 15px rgba(16, 185, 129, 0.5);
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 15px rgba(239, 68, 68, 0.7), 0 0 30px rgba(239, 68, 68, 0.4); }
+  50% { box-shadow: 0 0 25px rgba(239, 68, 68, 1), 0 0 50px rgba(239, 68, 68, 0.6); }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-10px); }
+  40%, 80% { transform: translateX(10px); }
+}
+
+.result.malicious {
+  color: #ef4444;
+  background-color: rgba(239, 68, 68, 0.1);
+  border-color: #ef4444;
+  box-shadow: 0 0 15px rgba(239, 68, 68, 0.7), 0 0 30px rgba(239, 68, 68, 0.4);
+  animation: shake 0.5s ease-in-out 2, pulse 2s infinite;
+}
+
+.result.neutral {
+  color: #f59e0b;
+  background-color: rgba(245, 158, 11, 0.1);
+  border-color: #f59e0b;
+  box-shadow: 0 0 15px rgba(245, 158, 11, 0.5);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }

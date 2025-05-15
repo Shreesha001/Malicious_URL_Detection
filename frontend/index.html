@@ -1,17 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>DNS Malicious URL Checker</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>URL Malicious Checker</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-  <div class="container">
-    <h1>🔍 DNS-Based URL Checker</h1>
-    <input type="text" id="urlInput" placeholder="Enter a URL..." />
-    <button onclick="checkURL()">Check URL</button>
-    <p id="result"></p>
+<body class="bg-gradient-to-br from-gray-900 via-purple-900 to-black flex items-center justify-center min-h-screen p-4">
+  <div class="app-container bg-gray-800 bg-opacity-80 rounded-2xl shadow-2xl p-8 max-w-lg w-full border border-purple-500 neon-glow">
+    <h1 class="title text-4xl font-bold text-purple-300 mb-6 text-center">🔍 URL Malicious Checker</h1>
+    <p class="subtitle text-gray-400 mb-8 text-center">Enter a URL to verify if it’s safe or malicious</p>
+    
+    <input
+      type="text"
+      id="urlInput"
+      placeholder="https://example.com"
+      autocomplete="off"
+      class="w-full p-4 text-gray-200 bg-gray-900 border-2 border-gray-700 rounded-lg focus:border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all duration-300"
+    />
+
+    <button
+      id="checkBtn"
+      class="mt-6 w-full bg-purple-600 text-white p-4 rounded-lg font-semibold hover:bg-purple-700 hover:shadow-lg transition-all duration-300 transform hover:scale-105"
+    >
+      Check URL
+    </button>
+
+    <!-- Result box below with space -->
+    <div
+      id="result"
+      class="result mt-10 p-8 rounded-lg text-xl font-semibold text-center min-h-[100px] border-2 border-transparent transition-all duration-500"
+    ></div>
   </div>
+  
   <script src="script.js"></script>
 </body>
 </html>
